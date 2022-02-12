@@ -1,7 +1,10 @@
 import plotly.graph_objs as go #type: ignore
 import yfinance as yf #type: ignore
 
-data = yf.download(tickers='GOOG', period = '5d', interval = '5m', rounding= True)
+stockName = 'GOOG'
+
+
+data = yf.download(tickers= stockName, period = '10d', interval = '5m', rounding= True)
 print(data)
 
 fig = go.Figure()
