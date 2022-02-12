@@ -1,3 +1,4 @@
 # AuburnHacks2022GamerBoys
- Jeremy, Pedro, and Jackson
+ Jackson
+ 
  Auburn Hacks 2022 Project Repo
