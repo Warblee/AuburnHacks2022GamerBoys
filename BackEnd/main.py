@@ -5,6 +5,7 @@ from pydantic import BaseModel#type: ignore
 from models import returnPacket #type: ignore
 from models import packet 
 import FinanceTest
+from fastapi import Request
 
 app = FastAPI()
 
@@ -39,12 +40,13 @@ def setRPacket():
     rPacket.curVal = p[2]
 
 
-@app.get("/front")
+@app.get("/back")
 async def create_item(pack: packet):
-    return pack
-
-@app.post("/back")
-async def  setData():
     setRPacket()
-    return rPacket
+    print(request)
+    return packet
 
+@app.post("/front")
+async def  getBody(request: Request):
+    content = await request.json()
+    print(content)

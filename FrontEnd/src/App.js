@@ -75,6 +75,7 @@ var corsOptionsDelegate = function (req, callback) {
   return (
     <div className="App">
       <body className="head">Stock Time Machine</body>
+      <a href="https://lh3.googleusercontent.com/7VvJHKMdMnDjPocWATGWVtpocDeUMFRHZnnYfsNHCmJde0VhRyddo2QAvqo4wDJyq8hPoc7NXy19WubcNsLK9GmQZmATuyB1MjS5DnphjeV5tMZZ90_GYI1fgsZWOatIirFH707_718=w2400?source=screenshot.guru"> <img src="https://lh3.googleusercontent.com/7VvJHKMdMnDjPocWATGWVtpocDeUMFRHZnnYfsNHCmJde0VhRyddo2QAvqo4wDJyq8hPoc7NXy19WubcNsLK9GmQZmATuyB1MjS5DnphjeV5tMZZ90_GYI1fgsZWOatIirFH707_718=w600-h315-p-k" /> </a>
       <body className='rbody'>
         <label for="stock">Stock Name: </label>
         <input className="date-in" type="text" id="stock" value={ stock } onChange= {(e) => changeStock(e)}></input><br></br><br></br>
