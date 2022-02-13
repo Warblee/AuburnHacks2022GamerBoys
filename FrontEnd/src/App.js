@@ -1,6 +1,6 @@
-import logo from './logo.svg';
 import './App.css';
 import React, { useState} from 'react';
+import axios from 'axios';
 
 
 function App() {
@@ -28,8 +28,13 @@ function App() {
     dbreturn[0].value = "100";
     setEnd("tomorrow");
   }
-  const dbsend = [{stock:"AAPL", amount:3, start:"01-01-2001", end:"01-01-2002"}]
-  const dbreturn = [{value:"0"}]
+
+  function getDb() {  
+    axios.post("http://localhost:8000/add",{stock:stock, amount:amount, start:start, end:end}).then(console.log("json sent to server")).catch((error) => {console.log(error.message())})
+  }
+
+  const dbsend = [{sto:stock, amou:amount, sta:start, en:end}]
+  const dbreturn = [{value:"0", min:"0", current:""}]
   return (
     <div className="App">
       <body className="head">Stock Time Machine</body>
@@ -46,9 +51,9 @@ function App() {
         <input className="date-in" type="text" id="endDate" value={ end } onChange= {(e) => changeEnd(e)}></input><br></br><br></br>
 
 
-        <button className="button" onClick={sendToDB}>Go!</button>
+        <button className="button" onClick={getDb}>Go!</button>
         {
-            dbsend.map((item, index) => {return <p>if you bought {item.amount} of {item.stock} at {item.start} {item.end} you would have ${dbreturn[index].value} </p>})
+            dbsend.map((item, index) => {return <p>if you bought {item.amou} of {item.sto} at its lowest price between {item.sta} and {item.en} you would have netted ${dbreturn[index].value} today.</p>})
         }
 
 
