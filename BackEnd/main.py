@@ -8,25 +8,18 @@ import FinanceTest
 
 app = FastAPI()
 
-rPacket = returnPacket()
-rPacket.net = ' '
-rPacket.minVal = ' '
-rPacket.curVal = ' '
+rPacket = returnPacket(net = '', minVal = '', curVal = '')
 
-sPacket = packet()
-sPacket.stock = 0
-sPacket.amount = 0
-sPacket.start = ''
-sPacket.end = ''
+sPacket = packet(stock = '', amount = 0, start = '', end = '')
 
 '''
 Stock, Amt, Start, End
 '''
-@app.get("http://localhost:8000/add")
+@app.get("http://localhost:8000/front")
 async def create_item(pack: packet):
     return pack
 
-@app.post("http://localhost:3000/add")
+@app.post("http://localhost:8000/back")
 async def  setData():
     p = FinanceTest.doCalcs(sPacket.stock, sPacket.amount, sPacket.start, sPacket.end)
     rPacket.net = p[0]

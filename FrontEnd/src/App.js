@@ -8,7 +8,7 @@ function App() {
   const postIt = () => {
     const postData = async () => {
         setLoading(true);
-        axios.post('http://localhost:8000/add', {
+        axios.post('http://localhost:8000/front', {
             stock:stock, amount:amount, start:start, end:end
         })
             .then( response => {
@@ -25,7 +25,7 @@ function App() {
   useEffect(() => {
     const fetchDate = async () => {
         setLoading(true);
-        axios.get('http://localhost:8000/users')
+        axios.get('http://localhost:8000/back')
             .then(res => {
                 setData(res.data);
             })
