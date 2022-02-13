@@ -2,7 +2,7 @@ from pydantic import BaseModel
 
 class packet(BaseModel):
     stock: str
-    amount: int
+    amount: str
     start: str
     end: str 
 

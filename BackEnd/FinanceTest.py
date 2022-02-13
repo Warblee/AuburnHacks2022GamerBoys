@@ -38,7 +38,7 @@ def calc():
 
 def doCalcs(code, amt, start, end):
     stockCode = code
-    stockAmount = amt
+    stockAmount = int(amt)
     date1 = start
     date2 = end
 
