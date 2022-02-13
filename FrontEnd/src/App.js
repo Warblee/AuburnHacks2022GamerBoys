@@ -1,35 +1,63 @@
 import './App.css';
-import React, { useState} from 'react';
-import axios from 'axios';
-
+import React, { useState, useEffect } from 'react';
+const axios = require('axios');
 
 function App() {
-  const [stock, setStock] = useState("AAPL")
+
+  const [loading, setLoading] = useState(true);
+  const postIt = () => {
+    const postData = async () => {
+        setLoading(true);
+        axios.post('http://localhost:8000/add', {
+            stock:stock, amount:amount, start:start, end:end
+        })
+            .then( response => {
+                window.location.reload(false);
+            })
+            .catch(error => {
+                console.error(error.message);
+            });
+        setLoading(false);
+    };
+    postData();
+  }
+  
+  useEffect(() => {
+    const fetchDate = async () => {
+        setLoading(true);
+        axios.get('http://localhost:8000/users')
+            .then(res => {
+                setData(res.data);
+            })
+            .catch(err => {
+                console.error(err.message);
+            })
+        setLoading(false);
+    };
+    fetchDate();
+}, []);
+
+  const [stock, setStock] = useState("AAPL");
   function changeAmount(e) {
     setAmount(e.target.value)
   }
-  const [amount, setAmount] = useState(0)
+  const [amount, setAmount] = useState(0);
   function changeStock(e) {
     setStock(e.target.value)
   }
-  const [val, setVal] = useState(0.00)
+  const [val, setVal] = useState(0.00);
   function changeVal(e) {
     setVal(e.target.value)
   }
-  const [start, setStart] = useState("YYYY-MM-DD")
+  const [start, setStart] = useState("YYYY-MM-DD");
   function changeStart(e) {
     setStart(e.target.value)
   }
-  const [end, setEnd] = useState("YYYY-MM-DD")
+  const [end, setEnd] = useState("YYYY-MM-DD");
   function changeEnd(e) {
     setEnd(e.target.value)
   }
   const [data, setData] = useState([{net:"1", minVal:"1", curVal:"1"}]);
-
-  function getDb() {  
-    axios.post("http://localhost:8000/add",{stock:stock, amount:amount, start:start, end:end}).then((response) => {console.log(response);}).catch((error) => {console.log(error);});
-    axios.get("http://localhost:3000/add").then((res) => {setData(res);}).catch((error) => {console.log(error);})
-  }
 
   const dbreturn = [{value:"0", min:"0", current:""}]
   return (
@@ -46,7 +74,7 @@ function App() {
         <input className="date-in" type="text" id="endDate" value={ end } onChange= {(e) => changeEnd(e)}></input><br></br><br></br>
 
 
-        <button className="button" onClick={getDb}>Go!</button>
+        <button className="button" onClick={postIt}>Go!</button>
         <p>Buying {amount} of {stock} at in its min value between {start} and {end}:</p>
         <li>You would make ${data[0].net}.</li>
         <li>The min price of {stock} was ${data[0].minVal}.</li>
