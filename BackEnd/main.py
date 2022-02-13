@@ -9,14 +9,12 @@ import FinanceTest
 app = FastAPI()
 
 origins = [
-    "http://localhost.tiangolo.com",
-    "https://localhost.tiangolo.com",
     "http://localhost",
     "http://localhost:8080",
     "http://localhost:8000",
     "http://localhost:3000",
     "http://localhost:8000/back",
-    "http://localhost:8000front",
+    "http://localhost:8000/front",
 ]
 
 app.add_middleware(
