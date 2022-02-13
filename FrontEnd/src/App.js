@@ -67,7 +67,6 @@ function App() {
   }
   const [data, setData] = useState([{net:"1", minVal:"1", curVal:"1",stock:"1",amount:0,start:"1",end:"1"}]);
 
-  }
   return (
     <div className="App">
       <body className="head">Stocks Time Machine</body>
