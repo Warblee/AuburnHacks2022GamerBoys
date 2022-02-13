@@ -47,10 +47,6 @@ function App() {
         setLoading(false);
     };
     fetchDate();
-    changeViewStart();
-    changeViewAmount();
-    changeViewStock();
-    changeViewEnd();
 }, []);
 
   const [stock, setStock] = useState("AAPL");
@@ -69,21 +65,8 @@ function App() {
   function changeEnd(e) {
     setEnd(e.target.value)
   }
-  const [data, setData] = useState([{net:"1", minVal:"1", curVal:"1",stock:"1",amount:0,start:"",end:""}]);
+  const [data, setData] = useState([{net:"1", minVal:"1", curVal:"1",stock:"1",amount:0,start:"1",end:"1"}]);
 
-  const [viewStock, setViewStock] = useState("AAPL");
-  function changeViewStock() {
-    setViewStock(stock)
-  }
-  const [viewAmount, setViewAmount] = useState(0);
-  function changeViewAmount() {
-    setViewAmount(amount)
-  }const [viewStart, setViewStart] = useState("YYYY-MM-DD");
-  function changeViewStart() {
-    setViewStart(start)
-  }const [viewEnd, setViewEnd] = useState("YYYY-MM-DD");
-  function changeViewEnd() {
-    setViewEnd(end)
   }
   return (
     <div className="App">
