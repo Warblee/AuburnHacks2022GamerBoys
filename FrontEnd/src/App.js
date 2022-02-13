@@ -24,16 +24,13 @@ function App() {
   function changeEnd(e) {
     setEnd(e.target.value)
   }
-  function sendToDB() {
-    dbreturn[0].value = "100";
-    setEnd("tomorrow");
-  }
+  const [data, setData] = useState([{net:"1", minVal:"1", curVal:"1"}]);
 
   function getDb() {  
-    axios.post("http://localhost:8000/add",{stock:stock, amount:amount, start:start, end:end}).then(console.log("json sent to server")).catch((error) => {console.log(error.message())})
+    axios.post("http://localhost:8000/add",{stock:stock, amount:amount, start:start, end:end}).then((response) => {console.log(response);}).catch((error) => {console.log(error);});
+    axios.get("http://localhost:3000/add").then((res) => {setData(res);}).catch((error) => {console.log(error);})
   }
 
-  const dbsend = [{sto:stock, amou:amount, sta:start, en:end}]
   const dbreturn = [{value:"0", min:"0", current:""}]
   return (
     <div className="App">
@@ -42,9 +39,7 @@ function App() {
         <label for="stock">Stock Name: </label>
         <input className="date-in" type="text" id="stock" value={ stock } onChange= {(e) => changeStock(e)}></input><br></br><br></br>
         <label for="amount">Stock Amount: </label>
-        <input className="date-in" type="text" id="amount" value={ amount } onChange= {(e) => changeAmount(e)}></input><br></br><p>OR</p>
-        <label for="val">Initial Stock Value: $</label>
-        <input className="date-in" type="text" id="val" value={ val } onChange= {(e) => changeVal(e)}></input><br></br><br></br>
+        <input className="date-in" type="text" id="amount" value={ amount } onChange= {(e) => changeAmount(e)}></input><br></br><br></br>
         <label for="startDate">Buy Range: From </label>
         <input className="date-in" type="text" id="startDate" value={ start } onChange= {(e) => changeStart(e)}></input>
         <label for="endDate"> To </label>
@@ -52,9 +47,10 @@ function App() {
 
 
         <button className="button" onClick={getDb}>Go!</button>
-        {
-            dbsend.map((item, index) => {return <p>if you bought {item.amou} of {item.sto} at its lowest price between {item.sta} and {item.en} you would have netted ${dbreturn[index].value} today.</p>})
-        }
+        <p>Buying {amount} of {stock} at in its min value between {start} and {end}:</p>
+        <li>You would make ${data[0].net}.</li>
+        <li>The min price of {stock} was ${data[0].minVal}.</li>
+        <li>The current value of {stock} is ${data[0].curVal}.</li>
 
 
       </body>
