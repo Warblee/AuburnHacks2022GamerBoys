@@ -1,4 +1,5 @@
 .App {
+  
   background: linear-gradient(15deg, #ffcfea, #feffbe);
   color: #bfb9ff;
   font: Helvetica;
@@ -19,16 +20,26 @@
   }
 }
 
-.lbody {
-  padding: 10% 20%;
+.rbody {
+  padding: 0% 20%;
   align-items: right;
   text-align: right;
 }
 
-.rbody {
-  padding: 10% 20%;
-  align-items: left;
-  text-align: right;
+.button {
+  padding: 3px 3px;
+  font-size: 30px;
+  width: 20%;
+  height: 20%;
+  background: linear-gradient(15deg,#feffbe,#ffcfea);
+  border-radius: 10px;
+  border: 3px solid #bfb9ff;
+  color: #b37dec;
+}
+
+.head {
+  padding: 10% 10%;
+  font-size: 50px;
 }
 
 .date-in {
