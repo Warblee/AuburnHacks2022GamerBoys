@@ -38,7 +38,7 @@ var corsOptionsDelegate = function (req, callback) {
     const fetchDate = async () => {
         setLoading(true);
         axios.get('http://localhost:8000/back')
-            .then(res => {
+            .then(res => {  
                 setData(res.data);
             })
             .catch(err => {

@@ -32,16 +32,19 @@ sPacket = packet(stock = 'AAPL', amount = 1, start = '2010-01-01', end = '2010-0
 '''
 Stock, Amt, Start, End
 '''
+def setRPacket():
+    p = FinanceTest.doCalcs(sPacket.stock, sPacket.amount, sPacket.start, sPacket.end)
+    rPacket.net = p[0]
+    rPacket.minVal = p[1]
+    rPacket.curVal = p[2]
+
+
 @app.get("/front")
 async def create_item(pack: packet):
     return pack
 
 @app.post("/back")
 async def  setData():
-    p = FinanceTest.doCalcs(sPacket.stock, sPacket.amount, sPacket.start, sPacket.end)
-    rPacket.net = p[0]
-    rPacket.minVal = p[1]
-    rPacket.curVal = p[2]
-
+    setRPacket()
     return rPacket
 
