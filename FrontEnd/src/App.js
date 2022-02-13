@@ -1,8 +1,20 @@
 import './App.css';
 import React, { useState, useEffect } from 'react';
 const axios = require('axios');
+const cors = require('cors');
 
 function App() {
+  var whitelist = ['http://localhost:8000/front', 'http://localhost:8000/back']
+var corsOptionsDelegate = function (req, callback) {
+  var corsOptions;
+    if (whitelist.indexOf(req.header('Origin')) !== -1) {
+      corsOptions = { origin: true } // reflect (enable) the requested origin in the CORS response
+    } else {
+      corsOptions = { origin: false } // disable CORS for this request
+    }
+    callback(null, corsOptions) // callback expects two parameters: error and options
+  }
+
 
   const [loading, setLoading] = useState(true);
   const postIt = () => {
