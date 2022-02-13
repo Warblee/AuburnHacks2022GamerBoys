@@ -10,3 +10,7 @@ class returnPacket(BaseModel):
     net: str
     minVal: str
     curVal: str
+    stock: str
+    amount: int
+    start: str
+    end: str

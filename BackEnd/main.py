@@ -30,7 +30,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-rPacket = returnPacket(net = '', minVal = '', curVal = '')
+rPacket = returnPacket(net = '', minVal = '', curVal = '', stock = '', amount = 0, start = '', end = '')
 
 sPacket = packet(stock = '', amount = 0, start = '', end = '')
 
@@ -44,6 +44,10 @@ def setRPacket():
     rPacket.net = str(p[0])
     rPacket.minVal = str(p[1])
     rPacket.curVal = str(p[2])
+    rPacket.stock = sPacket.stock
+    rPacket.amount = sPacket.amount
+    rPacket.start = sPacket.start
+    rPacket.end = sPacket.end
 
 
 @app.get("/back")
