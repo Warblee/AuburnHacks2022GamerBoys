@@ -3,10 +3,10 @@ import plotly.graph_objs as go #type: ignore
 import yfinance as yf #type: ignore
 
 #variables
-stockCode = "GOOG"
-stockAmount = 100
-date1 = "2015-01-01"
-date2 = "2015-03-01"
+stockCode = ""
+stockAmount = 0
+date1 = ""
+date2 = ""
 
 high = 0
 low = 0
@@ -37,6 +37,10 @@ def calc():
     netTotal = float(high) - float(low)
 
 def doCalcs(code, amt, start, end):
+    global stockCode
+    global stockAmount
+    global date1
+    global date2
     stockCode = code
     stockAmount = int(amt)
     date1 = start

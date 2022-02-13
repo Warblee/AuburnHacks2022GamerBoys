@@ -5,7 +5,7 @@ const cors = require('cors');
 
 function App() {
   var whitelist = ['http://localhost:8000/front', 'http://localhost:8000/back']
-var corsOptionsDelegate = function (req, callback) {
+  var corsOptionsDelegate = function (req, callback) {
   var corsOptions;
     if (whitelist.indexOf(req.header('Origin')) !== -1) {
       corsOptions = { origin: true } // reflect (enable) the requested origin in the CORS response
@@ -57,10 +57,6 @@ var corsOptionsDelegate = function (req, callback) {
   function changeStock(e) {
     setStock(e.target.value)
   }
-  const [val, setVal] = useState(0.00);
-  function changeVal(e) {
-    setVal(e.target.value)
-  }
   const [start, setStart] = useState("YYYY-MM-DD");
   function changeStart(e) {
     setStart(e.target.value)
@@ -71,7 +67,6 @@ var corsOptionsDelegate = function (req, callback) {
   }
   const [data, setData] = useState([{net:"1", minVal:"1", curVal:"1"}]);
 
-  const dbreturn = [{value:"0", min:"0", current:""}]
   return (
     <div className="App">
       <body className="head">Stock Time Machine</body>
@@ -89,9 +84,9 @@ var corsOptionsDelegate = function (req, callback) {
 
         <button className="button" onClick={postIt}>Go!</button>
         <p>Buying {amount} of {stock} at in its min value between {start} and {end}:</p>
-        <li>You would make ${data[0].net}.</li>
-        <li>The min price of {stock} was ${data[0].minVal}.</li>
-        <li>The current value of {stock} is ${data[0].curVal}.</li>
+        <li>You would make ${data.net}.</li>
+        <li>The min price of {stock} was ${data.minVal}.</li>
+        <li>The current value of {stock} is ${data.curVal}.</li>
 
 
       </body>

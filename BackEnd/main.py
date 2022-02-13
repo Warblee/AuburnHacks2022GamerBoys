@@ -1,4 +1,5 @@
 from typing import Optional
+from urllib import response
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi import FastAPI #type: ignore
 from pydantic import BaseModel#type: ignore
@@ -6,6 +7,9 @@ from models import returnPacket #type: ignore
 from models import packet 
 import FinanceTest
 from fastapi import Request
+from fastapi import Response
+from fastapi.encoders import jsonable_encoder
+from fastapi.responses import JSONResponse
 
 app = FastAPI()
 
@@ -28,25 +32,34 @@ app.add_middleware(
 
 rPacket = returnPacket(net = '', minVal = '', curVal = '')
 
-sPacket = packet(stock = 'AAPL', amount = 1, start = '2010-01-01', end = '2010-02-01')
+sPacket = packet(stock = '', amount = 0, start = '', end = '')
 
 '''
 Stock, Amt, Start, End
 '''
+
+
 def setRPacket():
     p = FinanceTest.doCalcs(sPacket.stock, sPacket.amount, sPacket.start, sPacket.end)
-    rPacket.net = p[0]
-    rPacket.minVal = p[1]
-    rPacket.curVal = p[2]
+    rPacket.net = str(p[0])
+    rPacket.minVal = str(p[1])
+    rPacket.curVal = str(p[2])
 
 
 @app.get("/back")
-async def create_item(pack: packet):
-    setRPacket()
-    print(request)
-    return packet
+async def create_item():
+    
+    json_compatible_item_data = jsonable_encoder(rPacket)
+    print(json_compatible_item_data)
+    return JSONResponse(content=json_compatible_item_data)
 
 @app.post("/front")
 async def  getBody(request: Request):
     content = await request.json()
     print(content)
+    sPacket.stock = content.get('stock')
+    sPacket.amount = content.get('amount')
+    sPacket.start = content.get('start')
+    sPacket.end = content.get('end')
+    setRPacket()
+    print(sPacket)
