@@ -71,7 +71,6 @@ function App() {
     <div className="App">
       <body className="head">Stocks Time Machine</body>
       <body className='rbody'>
-        <img className="img" src="https://lh3.googleusercontent.com/7VvJHKMdMnDjPocWATGWVtpocDeUMFRHZnnYfsNHCmJde0VhRyddo2QAvqo4wDJyq8hPoc7NXy19WubcNsLK9GmQZmATuyB1MjS5DnphjeV5tMZZ90_GYI1fgsZWOatIirFH707_718=w600-h315-p-k" />
         <label for="stock">Stock Name: </label>
         <input className="date-in" type="text" id="stock" value={ stock } onChange= {(e) => changeStock(e)}></input><br></br><br></br>
         <label for="amount">Stock Amount: </label>
@@ -85,13 +84,14 @@ function App() {
         <button className="button" onClick={
             postIt
         }>Go!</button>
-        <p>Buying {data.amount} of {data.stock} at in its min value<br></br>between {data.start} and {data.end}:</p>
+        <p>Buying {data.amount} of {data.stock} in its min value<br></br>between {data.start} and {data.end}:</p>
         <li>You would make ${data.net}.</li>
         <li>The min price of {data.stock} was ${data.minVal}.</li>
         <li>The current value of {data.stock} is ${data.curVal}.</li>
 
 
       </body>
+      <img className="img" src="https://lh3.googleusercontent.com/7VvJHKMdMnDjPocWATGWVtpocDeUMFRHZnnYfsNHCmJde0VhRyddo2QAvqo4wDJyq8hPoc7NXy19WubcNsLK9GmQZmATuyB1MjS5DnphjeV5tMZZ90_GYI1fgsZWOatIirFH707_718=w600-h315-p-k" alt="From PNGWing.com" sizes="900px, 500px"/>
     </div>
   );
 }
